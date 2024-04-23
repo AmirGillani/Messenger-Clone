@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from "react";
+import MenuBar from "./partials/Menu-Bar";
+import LeftMenuBar from "./partials/Left-Menu-Bar";
+import RightMenuBar from "./partials/Right-Menu-Bar";
+import MainSection from "./components/Main-Section";
+import { useSelector } from "react-redux";
+import "./App.css";
 
 function App() {
+  
+  const { contact } = useSelector((state) => {
+    return state.messenger;
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <MenuBar />
+      <LeftMenuBar />
+      <MainSection />
+
+      <RightMenuBar contact={contact} />
+    </React.Fragment>
   );
 }
 
